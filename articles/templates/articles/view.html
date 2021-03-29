@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block title %}ВСП "Рівненський технічний фаховий коледж НУВГП"{% endblock %}
+{% load static %}
+
+{% block css_files %} 
+
+<link rel="stylesheet" href="{% static 'articles/css/style.css' %}">
+{% endblock %}
+
+{% block js_files %}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{article.title}}</h1>
+
+<hr/>
+
+{{article.content|safe}}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="uk">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+
+        <link rel="stylesheet" href="{% static 'bootstrap4/css/bootstrap-grid.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'interface/css/style.css' %}" >
+        {% block css_files %}
+        {% endblock %}    
+
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>   
+
+        <div class="background">
+
+            <div class="container">
+
+                <div class="top_bar border">
+
+                    <img class="top_bar__logo" src="{% static 'imgs/logo.png' %}"/>
+
+                    <div class="top_bar__right">
+
+                        <div class="top_bar__right">
+
+                            <h2>Відокремлений структурний підрозділ "Рівненський технічний фаховий коледж Національного університету водного господарства та природокористування"</h2>
+                            <div class="top_bar__right__search">
+                                <input type="text" class="input__text" placeholder="Пошук"/>
+                                <button class="btn __search"></button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            
+                {% include "navigation/view.html" %}  
+                
+                {% block content %}
+                {% endblock %} 
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <script src="{% static 'bootstrap4/js/jquery-3.4.1.min.js' %}"></script> 
+        <script src="{% static 'bootstrap4/js/bootstrap.min.js' %}"></script>
+        {% block js_files %}
+        {% endblock %}    
+
+    </body>
+
+</html>
