@@ -1,20 +1,22 @@
-<div class="nav border">
+
+
+<div class="top_bar__nav">
     
     {% for item in navigation %}
-        <div class="nav__item">
-            <a href="{{item.url}}" class="nav__item__url">{{item.name}}</a>
+        <div class="top_bar__nav__item">
+            <a href="{{item.url}}" class="top_bar__nav__item__url">{{item.name}}</a>
 
             {% if item.children %}
                 
-                <div class="nav__item__menu">
+                <div class="top_bar__nav__item__menu">
                     <div class="container">
-                        <div class="nav__item__menu__childs">
+                        <div class="top_bar__nav__item__menu__childs">
                             {% for head in item.children %}
-                                <div class="nav__item__menu__childs__child">
-                                    <a href="{{head.url}}" class="nav__item__menu__childs__child__head">{{head.name}}</a>
+                                <div class="top_bar__nav__item__menu__childs__child">
+                                    <a href="{{head.url}}" class="top_bar__nav__item__menu__childs__child__head">{{head.name}}</a>
 
                                     {% for url in head.children %}
-                                        <a href="{{url.url}}" class="nav__item__menu__childs__child__url">{{url.name}}</a>
+                                        <a href="{{url.url}}" class="top_bar__nav__item__menu__childs__child__url">{{url.name}}</a>
                                     {% endfor %}
                                 </div>
                                 

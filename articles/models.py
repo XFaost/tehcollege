@@ -21,7 +21,7 @@ class Article(models.Model):
     update_author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True, related_name='update_author', verbose_name='Автор останнього оновлення')
     update_datetime = models.DateTimeField(verbose_name='Оновлено')
     preview_photo = models.URLField(null=True, blank=True, verbose_name="Прев'ю фото")
-    preview_text = models.TextField(null=True, blank=True, verbose_name="Прев'ю тексту")
+    preview_text = models.TextField(verbose_name="Прев'ю тексту")
     tags = models.ManyToManyField(Tag, verbose_name='Теги')    
 
     def __str__(self):

@@ -8,9 +8,13 @@ def get_navigation():
     f = open(NAVIGATION_JSON_PATH, "rb")
     return json.loads(f.read().decode('utf8'))
 
+def __json_data_normalization(data):
+    """Нормалізує дані для json"""
+    return data.replace('"', '\\"')
+
 def __item_navigation_to_json_item(item):
     """Отримати json-формат даного елемента навігації"""
-    return '{' + '\"name\":\"' + item.name + '\",\"url\":\"' + item.url + '\",\"children\":' + __get_children_of_item_navigation(item.get_children()) + '},'
+    return '{' + '\"name\":\"' + __json_data_normalization(item.name) + '\",\"url\":\"' + item.url + '\",\"children\":' + __get_children_of_item_navigation(item.get_children()) + '},'
 
 def __get_children_of_item_navigation(items):
     """Отримати потомків даного елемента навігації з БД у форматі json"""
@@ -33,7 +37,7 @@ def navigation_to_json_file():
     """Зберегти навігацію у json-файл"""
 
     navigation_json = __navigation_to_json()
-
+ 
     f = open(NAVIGATION_JSON_PATH, 'wb')
     f.write(navigation_json.encode('utf8'))
     f.close()

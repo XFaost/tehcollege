@@ -9,7 +9,9 @@ from articles.services import *
 def home_view(request):
     """Відобразити головну сторінку сайту"""
 
+    page = request.GET.get('page', '')
+
     args = get_base_args()
     
-    args['articles'] = get_articles()
+    args['articles'] = get_articles(page)
     return render(request, 'home/view.html', args)

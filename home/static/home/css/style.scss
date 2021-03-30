@@ -1,16 +1,17 @@
 @import '../../../../static/interface/css/colors';
 
 .news {
-    margin: 50px 0;
-    padding: 0 25px;
+    margin: 50px 0;      
 
     &__item {
 
-        padding: 30px 0 20px 0;
-        position: relative;
+        margin-bottom: 10px;
+        padding: 30px;
+        border-radius: 10px;  
+        background-color: $white;
 
         &__title {
-
+            margin: 0;
         }
         &__about {
             display: flex;
@@ -26,6 +27,7 @@
             &__img {
                 display: flex;
                 flex-direction: column;
+                margin-right: 30px;
                 
                 img {
                     max-width: 400px;
@@ -34,24 +36,10 @@
             }
             &__text {
                 display: flex;
-                flex-direction: column;
-                margin: 0 30px;                
+                flex-direction: column;            
             }
         }
     }
 
-    &__item::after {
-        content: "";
-        display: block;
-        width: 100%;
-        height: 2px;
-
-        background-color: $gray;
-
-        position: absolute;
-        top: 100%;
-        left: 0;
-        z-index: 1;
-
-    }
+    
 }

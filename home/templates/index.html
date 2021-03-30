@@ -14,43 +14,23 @@
     </head>
 
     <body>   
+        
+        
+        <div class="container">
 
-        <div class="background">
+            <div class="top_bar">
 
-            <div class="container">
+                <div class="top_bar__background_img">
+                    <h2 class="top_bar__background_img__name">Відокремлений структурний підрозділ "Рівненський технічний фаховий коледж Національного університету водного господарства та природокористування"</h2>
+                </div>                
 
-                <div class="top_bar border">
-
-                    <img class="top_bar__logo" src="{% static 'imgs/logo.png' %}"/>
-
-                    <div class="top_bar__right">
-
-                        <div class="top_bar__right">
-
-                            <h2>Відокремлений структурний підрозділ "Рівненський технічний фаховий коледж Національного університету водного господарства та природокористування"</h2>
-                            <div class="top_bar__right__search">
-                                <input type="text" class="input__text" placeholder="Пошук"/>
-                                <button class="btn __search"></button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            
-                {% include "navigation/view.html" %}  
-                
-                {% block content %}
-                {% endblock %} 
-
+                {% include "navigation/view.html" %}
             </div>
-
-
+            
+            {% block content %}
+            {% endblock %} 
 
         </div>
-
-
 
         <script src="{% static 'bootstrap4/js/jquery-3.4.1.min.js' %}"></script> 
         <script src="{% static 'bootstrap4/js/bootstrap.min.js' %}"></script>
