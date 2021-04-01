@@ -13,5 +13,5 @@ def home_view(request):
 
     args = get_base_args()
     
-    args['articles'] = get_articles(page)
-    return render(request, 'home/view.html', args)
+    args['articles'] = get_articles(None, page)
+    return render(request, 'articles/category/view.html', args)

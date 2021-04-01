@@ -1,5 +1,6 @@
 from django.contrib import admin
 from articles.models import *
+from django.utils.html import format_html
 
 import datetime
 
@@ -23,5 +24,24 @@ class article_admin(admin.ModelAdmin):
         obj.update_datetime = datetime.datetime.now()
         super().save_model(request, obj, form, change)
 
+class article_category_admin(admin.ModelAdmin):
+    search_fields = ['name', ]
+    autocomplete_fields  = ['tags', ]
+    readonly_fields = ('myurl_link', )
+    exclude = ('url',)
+
+    def myurl_link(self, instance):
+        return format_html('<a href="{url}" target=_blank>{url}</a>', url=instance.url)
+    myurl_link.short_description = "Посилання"
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            super().save_model(request, obj, form, change)
+            obj.url = "/articles/category?id=" + str(obj.pk)        
+        super().save_model(request, obj, form, change)
+
+        
+
 admin.site.register(Tag, tag_admin)
 admin.site.register(Article, article_admin)
+admin.site.register(ArticleCategory, article_category_admin)

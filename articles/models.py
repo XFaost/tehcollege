@@ -29,3 +29,14 @@ class Article(models.Model):
 
     class Meta:
         verbose_name_plural = 'Статті'
+
+class ArticleCategory(models.Model):
+    name = models.CharField(max_length=255, unique=True, verbose_name='Назва')
+    tags = models.ManyToManyField(Tag, verbose_name='Теги')
+    url = models.URLField(max_length = 4096, blank=True, null=True, verbose_name="Посилання")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Категорії статей'

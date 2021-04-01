@@ -4,7 +4,7 @@
 
 {% block css_files %} 
 
-<link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'articles/css/style.css' %}">
 {% endblock %}
 
 {% block js_files %}
@@ -12,31 +12,31 @@
 
 {% block content %}
 
-<div class="news">
+<div class="category">
 
     {% for article in articles.list %}
 
-        <div class="news__item">
-            <h2 class="news__item__title">
-                <a class="is_visited" href="/article?id={{article.id}}" target="_blank">{{article.title}}</a>
+        <div class="category__article">
+            <h2 class="category__article__title">
+                <a class="is_visited" href="/articles?id={{article.id}}" target="_blank">{{article.title}}</a>
             </h2>
-            <div class="news__item__about">
-                <span class="news__item__about__item">
+            <div class="category__article__about">
+                <span class="category__article__about__item">
                     {{article.create_datetime|date:"d.m.Y H:i:s"}} | 
                 </span>
-                <span class="news__item__about__item">
+                <span class="category__article__about__item">
                     Автор: {{article.update_author}}
                 </span>
             </div>
 
-            <div class="news__item__preview">
+            <div class="category__article__preview">
                 {% if article.preview_photo %}
-                <div class="news__item__preview__img">
+                <div class="category__article__preview__img">
                     <img src="{{article.preview_photo}}"/>
                 </div>   
                 {% endif %}  
                 {% if article.preview_text %}       
-                <div class="news__item__preview__text">
+                <div class="category__article__preview__text">
                     <span>
                         {{article.preview_text}}
                     </span>
