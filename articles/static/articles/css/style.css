@@ -1,1 +1,27 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+.article {
+  margin: 50px 0;
+  padding: 27px 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.article__title {
+  margin: 0;
+}
+
+.article__about {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-style: italic;
+  padding: 8px 0 20px 0;
+}
+
+.article__about__item {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=style.css.map */

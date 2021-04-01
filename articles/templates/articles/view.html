@@ -12,10 +12,25 @@
 
 {% block content %}
 
-<h1>{{article.title}}</h1>
+<div class="article">
+    <h1 class="article__title">
+        {{article.title}}
+    </h1>
+    <div class="article__about">
+        <span class="article__about__item">
+            {{article.create_datetime|date:"d.m.Y H:i:s"}} | 
+        </span>
+        <span class="article__about__item">
+            Автор: {{article.update_author}}
+        </span>
+    </div>
 
-<hr/>
+    <hr/>
 
-{{article.content|safe}}
+    <div class="article__content">
+        {{article.content|safe}}
+    </div>
+</div>
+
 
 {% endblock %}

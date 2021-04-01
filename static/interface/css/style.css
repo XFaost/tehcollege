@@ -1,6 +1,20 @@
 html, body {
   margin: 0;
-  background-color: #f2f2f2;
+  background-color: #f5f5f5;
+}
+
+a {
+  display: block;
+  color: #000000;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+}
+
+a.is_visited:visited {
+  color: #696969;
 }
 
 .top_bar {
@@ -41,14 +55,14 @@ html, body {
           justify-content: center;
 }
 
-.top_bar__nav__item__url {
-  display: block;
+.top_bar__nav__item {
   position: relative;
+}
+
+.top_bar__nav__item__url {
   padding: 12px 15px;
   -webkit-transition: background-color .2s linear;
   transition: background-color .2s linear;
-  color: #000000;
-  text-decoration: none;
 }
 
 .top_bar__nav__item__menu {
@@ -57,21 +71,21 @@ html, body {
   left: 0;
   visibility: hidden;
   opacity: 0;
-  width: 100%;
+  width: 200px;
 }
 
 .top_bar__nav__item__menu__childs {
   margin-top: 5px;
-  padding: 30px;
   border-radius: 10px;
   background-color: #ffffff;
+  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: center;
@@ -82,16 +96,11 @@ html, body {
 }
 
 .top_bar__nav__item__menu__childs__child {
-  margin: 5px;
+  padding: 5px 10px;
 }
 
 .top_bar__nav__item__menu__childs__child__head {
-  display: block;
-  padding: 5px 15px;
-  font-weight: bold;
-  color: #000000;
   background-color: #ffffff;
-  text-decoration: none;
 }
 
 .top_bar__nav__item__menu__childs__child__head:hover {
@@ -99,10 +108,7 @@ html, body {
 }
 
 .top_bar__nav__item__menu__childs__child__url {
-  display: block;
-  padding: 5px 15px;
-  color: #000000;
-  text-decoration: none;
+  padding: 2px 0 0 5px;
 }
 
 .top_bar__nav__item__menu__childs__child__url::before {
@@ -114,7 +120,7 @@ html, body {
 }
 
 .top_bar__nav__item:hover .top_bar__nav {
-  background-color: #fcfcfc;
+  background-color: #f5f5f5;
 }
 
 .top_bar__nav__item:hover .top_bar__nav__item__url::after {
@@ -124,7 +130,7 @@ html, body {
   height: 2px;
   background-color: #000000;
   position: absolute;
-  top: 80%;
+  bottom: 7px;
   left: 5%;
 }
 
