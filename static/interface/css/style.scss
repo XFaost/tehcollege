@@ -57,23 +57,24 @@ a {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap; 
-        justify-content: center;   
+        justify-content: center;  
     
         &__item {
             position: relative;
 
-            &__url {
+            &__title {
                 padding: 12px 15px;
                 transition: background-color .2s linear;
+                cursor: pointer;
             }
     
             &__menu {
                 z-index: 1;
                 position: absolute;
-                left: 0;
                 visibility: hidden;
                 opacity: 0;
-                width: 200px; 
+                display: none;
+                width: 250px; 
     
                 &__childs {                    
                     margin-top: 5px;
@@ -111,12 +112,21 @@ a {
                         }    
                     } 
                 }
+
+                &.__show {
+                    visibility: visible;
+                    opacity: 1;  
+                    display: block; 
+                }
+                &.__reverse {
+                    right: 0;
+                }
             }
 
             &:hover & {
                 background-color: $light-gray;
                 
-                &__url::after {
+                &__title::after {
                     content: "";
                     display: block;
                     width: 90%;
@@ -128,13 +138,10 @@ a {
                     bottom: 7px;
                     left: 5%;     
                 }
-
-                &__menu {
-                    visibility: visible;
-                    opacity: 1;   
-                }
             }  
 
+            
+        
         }
     
         

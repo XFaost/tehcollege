@@ -2,7 +2,12 @@
 
     {% for item in navigation %}
     <div class="top_bar__nav__item">
-        <a href="{{item.url}}" class="top_bar__nav__item__url">{{item.name}}</a>
+        
+        {% if not item.children %}
+        <a href="{{item.url}}" class="top_bar__nav__item__title">{{item.name}}</a>
+        {% else %}
+        <div class="top_bar__nav__item__title">{{item.name}}</div>
+        {% endif %}
 
         {% if item.children %}                
         <div class="top_bar__nav__item__menu">
