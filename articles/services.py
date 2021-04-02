@@ -2,13 +2,15 @@ from django.core.paginator import Paginator
 
 from articles.models import *
 
+
 def __get_paginator(items, page_num, quantity):
     """Отримати paginator вказавши querylist, номер сторінки та max кількість елементів на одній сторінці"""
     paginator = Paginator(items, quantity)
-    
+
     if page_num > paginator.num_pages:
         page_num = paginator.num_pages
     return page_num, paginator.page(page_num), paginator.num_pages
+
 
 def __to_int(value, default):
     """Перевести змінну у int, у разі невдачі - присвоїти значення default"""
@@ -18,7 +20,16 @@ def __to_int(value, default):
         value = default
     return value
 
-def get_articles(category_id, page_num):
+
+def __get_category_name(category_id):
+    """Отримати ім'я категорії по даному ідентифікатору"""
+    category = ArticleCategory.objects.filter(id=category_id).first()
+    if category:
+        return category.name
+    return "Не відома категорія"
+
+
+def __get_articles_by_category(category_id, page_num):
     """Отримати статі по даній категорії
 
         category_id - якщо не вказати, то виведеться ...
@@ -30,20 +41,31 @@ def get_articles(category_id, page_num):
 
     args = {}
 
-    articles = None
+    articles = Article.objects.all().order_by('-id')
 
     if category_id > 0:
         category = ArticleCategory.objects.filter(id=category_id).first()
         if category:
-            articles = Article.objects.filter(tags__in=category.tags.all()).distinct()
-    else:
-        articles = Article.objects.all()
-
-    print(articles)
+            articles = articles.filter(tags__in=category.tags.all()).distinct()
 
     if articles:
         args['page_num'], args['list'], args['last_page'] = __get_paginator(articles, page_num, 2)
     return args
+
+
+def __create_article_category_args(name, articles):
+    """Отримати заповнений шаблон для рендеру статей певної категорії"""
+    article_category = {'name': name, 'articles': articles}
+    return article_category
+
+
+def get_article_category(article_category_id, article_category_page):
+    """Отримати назву категорії та її статті"""
+    name = __get_category_name(article_category_id)
+    articles = __get_articles_by_category(article_category_id, article_category_page)
+    article_category = __create_article_category_args(name, articles)
+    return article_category
+
 
 def get_article(article_id):
     """Отримати статтю по її id"""
