@@ -4,9 +4,13 @@
     <div class="top_bar__nav__item">
         
         {% if not item.children %}
-        <a href="{{item.url}}" class="top_bar__nav__item__title">{{item.name}}</a>
+        <a href="{{item.url}}" class="top_bar__nav__item__title">
+            <span>
+                {{item.name}}
+            </span>
+        </a>
         {% else %}
-        <div class="top_bar__nav__item__title">{{item.name}}</div>
+        <span class="top_bar__nav__item__title">{{item.name}}</span>
         {% endif %}
 
         {% if item.children %}                
@@ -15,10 +19,18 @@
                 
                 {% for head in item.children %}
                 <div class="top_bar__nav__item__menu__childs__child">
-                    <a href="{{head.url}}" class="top_bar__nav__item__menu__childs__child__head">{{head.name}}</a>
+                    <a href="{{head.url}}" class="top_bar__nav__item__menu__childs__child__head">
+                        <span>
+                            {{head.name}}
+                        </span>
+                    </a>
 
                     {% for url in head.children %}
-                    <a href="{{url.url}}" class="top_bar__nav__item__menu__childs__child__url">{{url.name}}</a>
+                    <a href="{{url.url}}" class="top_bar__nav__item__menu__childs__child__url">
+                        <span>
+                            {{url.name}}
+                        </span>
+                    </a>
                     {% endfor %}                    
                 </div>                                
                 {% endfor %}

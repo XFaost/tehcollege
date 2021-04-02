@@ -7,7 +7,6 @@ $(".top_bar__nav__item").on('mouseenter mouseleave', function (el) {
         var l = off.left;
         var w = elm.width();
         var docW = $(window).width();
-        console.log(off)
 
         var isEntirelyVisible = (l + w <= docW);
 
