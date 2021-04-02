@@ -1,34 +1,28 @@
-
-
 <div class="top_bar__nav">
-    
+
     {% for item in navigation %}
-        <div class="top_bar__nav__item">
-            <a href="{{item.url}}" class="top_bar__nav__item__url">{{item.name}}</a>
+    <div class="top_bar__nav__item">
+        <a href="{{item.url}}" class="top_bar__nav__item__url">{{item.name}}</a>
 
-            {% if item.children %}
+        {% if item.children %}                
+        <div class="top_bar__nav__item__menu">
+            <div class="top_bar__nav__item__menu__childs">
                 
-                <div class="top_bar__nav__item__menu">
+                {% for head in item.children %}
+                <div class="top_bar__nav__item__menu__childs__child">
+                    <a href="{{head.url}}" class="top_bar__nav__item__menu__childs__child__head">{{head.name}}</a>
 
-                        <div class="top_bar__nav__item__menu__childs">
-                            {% for head in item.children %}
-                                <div class="top_bar__nav__item__menu__childs__child">
-                                    <a href="{{head.url}}" class="top_bar__nav__item__menu__childs__child__head">{{head.name}}</a>
+                    {% for url in head.children %}
+                    <a href="{{url.url}}" class="top_bar__nav__item__menu__childs__child__url">{{url.name}}</a>
+                    {% endfor %}                    
+                </div>                                
+                {% endfor %}
 
-                                    {% for url in head.children %}
-                                        <a href="{{url.url}}" class="top_bar__nav__item__menu__childs__child__url">{{url.name}}</a>
-                                    {% endfor %}
-                                </div>
-                                
-                            {% endfor %}
-                        </div>
-                    
-                </div>                               
-                
-            {% endif %}
-        </div>
-        
-     
+            </div>                    
+        </div>   
+        {% endif %}
+
+    </div>
     {% endfor %}
 
 </div>

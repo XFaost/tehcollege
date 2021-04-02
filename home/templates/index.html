@@ -21,7 +21,8 @@
             <div class="top_bar">
 
                 <div class="top_bar__background_img">
-                    <h2 class="top_bar__background_img__name">Відокремлений структурний підрозділ "Рівненський технічний фаховий коледж Національного університету водного господарства та природокористування"</h2>
+                    <h2 class="top_bar__background_img__name __def">{{college.fullname}}</h2>
+                    <h2 class="top_bar__background_img__name __small">{{college.short_name}}</h2>
                 </div>                
 
                 {% include "navigation/view.html" %}
@@ -34,6 +35,7 @@
 
         <script src="{% static 'bootstrap4/js/jquery-3.4.1.min.js' %}"></script> 
         <script src="{% static 'bootstrap4/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'interface/js/script.js' %}"></script>
         {% block js_files %}
         {% endblock %}    
 

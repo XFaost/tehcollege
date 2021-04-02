@@ -17,6 +17,10 @@ a.is_visited:visited {
   color: #696969;
 }
 
+a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_block:active {
+  text-decoration: none;
+}
+
 .top_bar {
   margin: 25px 0 5px 0;
   border-radius: 10px;
@@ -27,11 +31,11 @@ a.is_visited:visited {
   height: 240px;
   padding: 25px 30px;
   border-radius: 10px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.2))), url(/media/images/1_h2GgiQV.jpg);
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url(/media/images/1_h2GgiQV.jpg);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.8)), to(rgba(0, 0, 0, 0.2))), url("/media/images/1_h2GgiQV.jpg");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)), url("/media/images/1_h2GgiQV.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .top_bar__background_img__name {
@@ -119,7 +123,7 @@ a.is_visited:visited {
   text-decoration: underline;
 }
 
-.top_bar__nav__item:hover .top_bar__nav {
+.top_bar__nav__item:hover .top_bar__nav__item {
   background-color: #f5f5f5;
 }
 
@@ -134,7 +138,7 @@ a.is_visited:visited {
   left: 5%;
 }
 
-.top_bar__nav__item:hover > .top_bar__nav__item__menu {
+.top_bar__nav__item:hover .top_bar__nav__item__menu {
   visibility: visible;
   opacity: 1;
 }
@@ -194,10 +198,6 @@ a.is_visited:visited {
   margin: 0;
 }
 
-.category__article__title a:hover {
-  text-decoration: underline;
-}
-
 .category__article__about {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -224,7 +224,7 @@ a.is_visited:visited {
           flex-direction: row;
 }
 
-.category__article__preview__img {
+.category__article__preview.__def .category__article__preview__img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -235,13 +235,13 @@ a.is_visited:visited {
   margin-right: 20px;
 }
 
-.category__article__preview__img img {
+.category__article__preview.__def .category__article__preview__img img {
   max-width: 400px;
   max-height: 200px;
   border-radius: 10px;
 }
 
-.category__article__preview__text {
+.category__article__preview.__def .category__article__preview__text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -251,9 +251,94 @@ a.is_visited:visited {
           flex-direction: column;
 }
 
-.category__article__preview__text span {
+.category__article__preview.__def .category__article__preview__text span {
+  line-height: 18px;
+  font-weight: 400;
   border-radius: 10px;
   padding: 18px;
   background-color: #f2f2f2;
+}
+
+.category__article__preview.__small .category__article__preview__img {
+  float: left;
+  margin: 0 20px 5px 0;
+  max-width: 120px;
+  max-height: 200px;
+  border-radius: 10px;
+}
+
+.category__article__preview.__small .category__article__preview__text {
+  color: #333;
+  line-height: 18px;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.category__article:hover .category__article__title {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 991px) {
+  .top_bar__background_img__name {
+    font-size: 21px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .top_bar__background_img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url("/media/images/1_h2GgiQV.jpg");
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/media/images/1_h2GgiQV.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .top_bar__background_img__name {
+    width: 100%;
+    font-size: 22px;
+    text-align: center;
+  }
+}
+
+.__small {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media screen and (max-width: 576px) {
+  .top_bar__background_img {
+    height: 140px;
+  }
+  .category__article {
+    padding: 15px;
+  }
+  .category__article__title {
+    margin: 0;
+    font-size: 17px;
+  }
+  .category__article__about {
+    font-size: 12px;
+    padding: 5px 0 15px 0;
+  }
+  .__def {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .__small {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=style.css.map */
