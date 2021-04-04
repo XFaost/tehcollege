@@ -27,6 +27,7 @@ class Article(models.Model):
     preview_photo = models.URLField(null=True, blank=True, verbose_name="Прев'ю фото")
     preview_text = models.TextField(verbose_name="Прев'ю тексту")
     tags = models.ManyToManyField(Tag, verbose_name='Теги')
+    url = models.URLField(max_length=4096, blank=True, null=True, verbose_name="Посилання")
 
     def __str__(self):
         return self.title
@@ -45,3 +46,14 @@ class ArticleCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Категорії статей'
+
+class SimplePage(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Назва')
+    content = RichTextField(verbose_name="Зміст")
+    url = models.URLField(max_length=4096, blank=True, null=True, verbose_name="Посилання")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name_plural = 'Прості сторінки'

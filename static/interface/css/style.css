@@ -9,13 +9,13 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: e-UkraineHead-Bold, Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
-span, p {
+span, p, button {
   display: block;
-  font-family: e-Ukraine-Light, Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
   line-height: 18px;
   font-weight: 400;
 }
@@ -26,7 +26,7 @@ img {
 
 html, body {
   margin: 0;
-  background-color: #f5f5f5;
+  background-color: #f5f6fa;
 }
 
 a {
@@ -50,7 +50,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
 .top_bar {
   margin: 25px 0 5px 0;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: white;
 }
 
 .top_bar__background_img {
@@ -89,11 +89,39 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
   position: relative;
 }
 
+.top_bar__nav__item__is_open {
+  display: none;
+}
+
+.top_bar__nav__item__is_open:checked ~ .top_bar__nav__item__menu {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
 .top_bar__nav__item__title {
   padding: 12px 15px;
   -webkit-transition: background-color .2s linear;
   transition: background-color .2s linear;
   cursor: pointer;
+  background-color: white;
+  border: 0;
+  outline: none;
+}
+
+.top_bar__nav__item__title:focus {
+  background-color: #f2f2f2;
+}
+
+.top_bar__nav__item__title:hover::after {
+  content: "";
+  display: block;
+  width: 90%;
+  height: 1px;
+  background-color: #000000;
+  position: absolute;
+  bottom: 7px;
+  left: 5%;
 }
 
 .top_bar__nav__item__menu {
@@ -108,7 +136,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
 .top_bar__nav__item__menu__childs {
   margin-top: 5px;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: white;
   padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -131,7 +159,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
 }
 
 .top_bar__nav__item__menu__childs__child__head {
-  background-color: #ffffff;
+  background-color: white;
 }
 
 .top_bar__nav__item__menu__childs__child__head:hover {
@@ -150,32 +178,15 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
   text-decoration: underline;
 }
 
-.top_bar__nav__item__menu.__show {
-  visibility: visible;
-  opacity: 1;
-  display: block;
-}
-
 .top_bar__nav__item__menu.__reverse {
   right: 0;
-}
-
-.top_bar__nav__item:hover .top_bar__nav__item__title::after {
-  content: "";
-  display: block;
-  width: 90%;
-  height: 1px;
-  background-color: #000000;
-  position: absolute;
-  bottom: 7px;
-  left: 5%;
 }
 
 .input__text {
   border-width: 0px 0px 1px 0px;
   border-style: solid;
   border-color: transparent;
-  background-color: #ffffff;
+  background-color: white;
   height: 30px;
   padding: .375rem .75rem;
   outline: none !important;
@@ -188,7 +199,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
   margin: 50px 0;
   padding: 27px 30px;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: white;
 }
 
 .article__title {
@@ -216,10 +227,11 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
 }
 
 .category__article {
+  position: relative;
   margin-bottom: 10px;
   padding: 27px 30px;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: white;
 }
 
 .category__article__title {
@@ -281,7 +293,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
 .category__article__preview.__def .category__article__preview__text span {
   border-radius: 10px;
   padding: 15px;
-  background-color: #f2f2f2;
+  background-color: #fff3ef;
 }
 
 .category__article__preview.__small .category__article__preview__img {
@@ -351,7 +363,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
   }
   .category__article__title {
     margin: 0;
-    font-size: 17px;
+    font-size: 18px;
   }
   .category__article__about {
     font-size: 12px;

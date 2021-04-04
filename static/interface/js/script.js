@@ -1,8 +1,14 @@
-$(".top_bar__nav__item").on('mouseenter mouseleave', function (el) {
+
+$(".top_bar__nav__item__title").on('click', function (el) {      
+    // Відкриває елементи навігації таким чином, щоб випадаюче меню не виходило за межі екрену
     
-    $('.top_bar__nav__item__menu', this).toggleClass('__show');
-    if ($('.top_bar__nav__item__menu', this).length) {        
-        var elm = $('.top_bar__nav__item__menu', this);
+    var el = this.parentElement;
+
+    var checked = !$('.top_bar__nav__item__is_open', el).prop("checked");
+    $('.top_bar__nav__item__is_open', el).prop("checked", checked);
+
+    if ($('.top_bar__nav__item__menu', el).length) {        
+        var elm = $('.top_bar__nav__item__menu', el);
         var off = elm.offset();
         var l = off.left;
         var w = elm.width();
@@ -17,3 +23,18 @@ $(".top_bar__nav__item").on('mouseenter mouseleave', function (el) {
         }
     }
 });
+
+
+
+document.addEventListener('click', function(event) {
+    // Закриває меню навігації, якщо відбувся клік поза межеми цього меню
+
+    var radio = document.querySelector('input[name="nav"]:checked');
+    if(radio) {
+        var nav_item = radio.parentElement;       
+        if(!nav_item.contains(event.target)) {
+            radio.checked = false;
+        } 
+    }         
+});
+

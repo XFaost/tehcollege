@@ -3,15 +3,19 @@
 
 $top_bar_background_img: '/media/images/1_h2GgiQV.jpg';
 $border-radius: 10px;
+$background_site_color: #f5f6fa;
+$background_elements_color: white;
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: e-UkraineHead-Bold, Helvetica, Arial, sans-serif;
+    //font-family: e-UkraineHead-Bold, Helvetica, Arial, sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
-span, p {
+span, p, button {
     display: block;
-    font-family: e-Ukraine-Light, Helvetica, Arial, sans-serif;
-    font-size: 12px;   
+    //font-family: e-Ukraine-Light, Helvetica, Arial, sans-serif;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;   
     line-height: 18px; 
     font-weight: 400; 
 }
@@ -22,7 +26,8 @@ img {
 
 html, body { 
     margin: 0; 
-    background-color: $light-gray;
+    background-color: $background_site_color;
+    //background-color: $light-gray;
 }
 
 a {
@@ -50,7 +55,7 @@ a {
     
     border-radius: $border-radius;
 
-    background-color: $white;
+    background-color: $background_elements_color;
 
     &__background_img {
         height: 240px;
@@ -79,10 +84,39 @@ a {
         &__item {
             position: relative;
 
+            &__is_open {
+                display: none;
+            }
+            &__is_open:checked ~ &__menu {
+                visibility: visible;
+                opacity: 1;  
+                display: block;                
+            }
+
             &__title {
                 padding: 12px 15px;
                 transition: background-color .2s linear;
                 cursor: pointer;
+                background-color: $background_elements_color;
+                border: 0;
+                outline: none;
+
+                &:focus {
+                    background-color: $gray;                    
+                }
+
+                &:hover::after {
+                    content: "";
+                    display: block;
+                    width: 90%;
+                    height: 1px;
+            
+                    background-color: $black;
+            
+                    position: absolute;
+                    bottom: 7px;
+                    left: 5%;                         
+                }
             }
     
             &__menu {
@@ -96,7 +130,7 @@ a {
                 &__childs {                    
                     margin-top: 5px;
                     border-radius: $border-radius;  
-                    background-color: $white;  
+                    background-color: $background_elements_color;  
                     padding: 10px; 
     
                     display: flex;
@@ -110,7 +144,7 @@ a {
                         padding: 5px 10px;         
     
                         &__head {
-                            background-color: $white; 
+                            background-color: $background_elements_color; 
         
                             &:hover {
                                 text-decoration: underline;
@@ -130,32 +164,13 @@ a {
                     } 
                 }
 
-                &.__show {
-                    visibility: visible;
-                    opacity: 1;  
-                    display: block; 
-                }
                 &.__reverse {
                     right: 0;
                 }
             }
 
-
-            &:hover & {
-
-                &__title::after {
-                    content: "";
-                    display: block;
-                    width: 90%;
-                    height: 1px;
             
-                    background-color: $black;
-            
-                    position: absolute;
-                    bottom: 7px;
-                    left: 5%;     
-                }
-            }  
+              
         }
     }
 }
@@ -169,7 +184,7 @@ a {
         border-width: 0px 0px 1px 0px;
         border-style: solid;
         border-color: transparent;
-        background-color: $white;
+        background-color: $background_elements_color;
         height: 30px;
         padding: .375rem .75rem;
         outline: none !important;
@@ -183,7 +198,7 @@ a {
     margin: 50px 0; 
     padding: 27px 30px;
     border-radius: $border-radius;  
-    background-color: $white;
+    background-color: $background_elements_color;
 
     &__title {
         margin: 0;
@@ -204,10 +219,11 @@ a {
     margin: 50px 0;      
 
     &__article {
+        position: relative;
         margin-bottom: 10px;
         padding: 27px 30px;
         border-radius: $border-radius;  
-        background-color: $white;
+        background-color: $background_elements_color;
 
         &__title {
             margin: 0;          
@@ -245,7 +261,7 @@ a {
                     span {
                         border-radius: $border-radius;
                         padding: 15px;
-                        background-color: $gray;
+                        background-color: #fff3ef;
                     }
                 }
             }
@@ -271,7 +287,9 @@ a {
             &__title {
                 text-decoration: underline;
             }
+            
         }
+
     }   
 }
 
@@ -336,7 +354,7 @@ a {
     
             &__title {
                 margin: 0;
-                font-size: 17px;          
+                font-size: 18px;          
             }
             &__about {
                 font-size: 12px; 
@@ -356,5 +374,7 @@ a {
         visibility: visible;
         opacity: 1;
     }
+
+    
 }
 

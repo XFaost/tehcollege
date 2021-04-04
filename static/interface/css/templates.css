@@ -7,16 +7,4 @@
   font-family: 'e-Ukraine-Light';
   src: url("/static/fonts/e-Ukraine-Light.ttf");
 }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: e-UkraineHead-Bold, Helvetica, Arial, sans-serif;
-}
-
-span, div, p, a {
-  font-family: e-Ukraine-Light, Helvetica, Arial, sans-serif;
-}
-
-img {
-  border-radius: 10px;
-}
 /*# sourceMappingURL=templates.css.map */

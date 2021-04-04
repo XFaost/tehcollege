@@ -2,16 +2,7 @@
 {% block title %}{{article.title}}{% endblock %}
 {% load static %}
 
-{% block css_files %} 
-
-<link rel="stylesheet" href="{% static 'articles/css/style.css' %}">
-{% endblock %}
-
-{% block js_files %}
-{% endblock %}
-
 {% block content %}
-
 <div class="article">
     <h1 class="article__title">
         {{article.title}}
@@ -31,6 +22,4 @@
         {{article.content|safe}}
     </div>
 </div>
-
-
 {% endblock %}

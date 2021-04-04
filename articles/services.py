@@ -68,5 +68,9 @@ def get_article_category(article_category_id, article_category_page):
 
 
 def get_article(article_id):
-    """Отримати статтю по її id"""
+    """Отримати статтю по даному id"""
     return Article.objects.filter(id=article_id).first()
+
+def get_simple_page(simple_page_id):
+    """Отримати просту сторінку по даному id"""
+    return SimplePage.objects.filter(id=simple_page_id).first()

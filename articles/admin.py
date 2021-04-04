@@ -12,18 +12,31 @@ class tag_admin(admin.ModelAdmin):
 class article_admin(admin.ModelAdmin):
     search_fields = ['title', ]
     autocomplete_fields = ['create_author', 'tags', ]
-    readonly_fields = ('create_author', 'update_author', 'create_datetime', 'update_datetime',)
-    list_filter = ('tags', 'create_author',)
+    readonly_fields = ('create_author', 'update_author', 'create_datetime', 'update_datetime', 'my_url_link', )
+    list_filter = ('tags', 'create_author', )
+    exclude = ('url', )
 
     def save_model(self, request, obj, form, change):
         """Після створення статті їй присвоюється автор та час. Якщо оновили статю, присвоюється коли та яка особа
         оновила її """
+
         if not obj.pk:
             obj.create_author = request.user
             obj.create_datetime = datetime.datetime.now()
+
         obj.update_author = request.user
         obj.update_datetime = datetime.datetime.now()
+
+        if not obj.pk:
+            super().save_model(request, obj, form, change)
+            obj.url = "/articles?id=" + str(obj.pk)
+            
         super().save_model(request, obj, form, change)
+    
+    def my_url_link(self, instance):
+        return format_html('<a href="{url}" target=_blank>{url}</a>', url=instance.url)
+
+    my_url_link.short_description = "Посилання"
 
 
 class article_category_admin(admin.ModelAdmin):
@@ -43,7 +56,27 @@ class article_category_admin(admin.ModelAdmin):
             obj.url = "/articles/category?id=" + str(obj.pk)
         super().save_model(request, obj, form, change)
 
+class simple_page_admin(admin.ModelAdmin):
+    search_fields = ['title', ]
+    readonly_fields = ('my_url_link', )
+    exclude = ('url', )
+
+    def save_model(self, request, obj, form, change):
+        """Після створення статті їй присвоюється автор та час. Якщо оновили статю, присвоюється коли та яка особа
+        оновила її """
+
+        #if not obj.pk:
+        super().save_model(request, obj, form, change)
+        obj.url = "/articles/simple_page?id=" + str(obj.pk)            
+        super().save_model(request, obj, form, change)
+    
+    def my_url_link(self, instance):
+        return format_html('<a href="{url}" target=_blank>{url}</a>', url=instance.url)
+
+    my_url_link.short_description = "Посилання"
+
 
 admin.site.register(Tag, tag_admin)
 admin.site.register(Article, article_admin)
 admin.site.register(ArticleCategory, article_category_admin)
+admin.site.register(SimplePage, simple_page_admin)
