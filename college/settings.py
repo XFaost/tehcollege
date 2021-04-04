@@ -9,6 +9,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = '../public_html/static/'
 MEDIA_ROOT = '../public_html/media/'
+CKEDITOR_UPLOAD_PATH = 'articles/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mptt',
     'ckeditor',
+    'ckeditor_uploader',
 
     'navigation.apps.NavigationConfig',
     'home.apps.HomeConfig',

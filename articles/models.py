@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-from ckeditor.fields import RichTextField  # https://www.youtube.com/watch?v=mF5jzSXb1dc
+from ckeditor_uploader.fields import RichTextUploadingField  # https://www.youtube.com/watch?v=L6y6cn1XUfw
 
 
 class Tag(models.Model):
@@ -17,7 +17,7 @@ class Tag(models.Model):
 
 class Article(models.Model):
     title = models.CharField(max_length=255, verbose_name='Назва')
-    content = RichTextField(verbose_name="Зміст")
+    content = RichTextUploadingField(verbose_name="Зміст")
     create_author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True,
                                       related_name='create_author', verbose_name='Автор')
     create_datetime = models.DateTimeField(verbose_name='Створено')
@@ -34,6 +34,7 @@ class Article(models.Model):
 
     class Meta:
         verbose_name_plural = 'Статті'
+        db_table = 'article'
 
 
 class ArticleCategory(models.Model):
@@ -46,10 +47,11 @@ class ArticleCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Категорії статей'
+        db_table = 'article_category'
 
 class SimplePage(models.Model):
     title = models.CharField(max_length=255, verbose_name='Назва')
-    content = RichTextField(verbose_name="Зміст")
+    content = RichTextUploadingField(verbose_name="Зміст")
     url = models.URLField(max_length=4096, blank=True, null=True, verbose_name="Посилання")
 
     def __str__(self):
@@ -57,3 +59,4 @@ class SimplePage(models.Model):
 
     class Meta:
         verbose_name_plural = 'Прості сторінки'
+        db_table = 'simple_page'

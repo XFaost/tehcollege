@@ -23,3 +23,4 @@ class Navigation(MPTTModel):
 
     class Meta:
         verbose_name_plural = "Елементи навігації"
+        db_table = 'navigation'

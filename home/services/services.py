@@ -1,6 +1,7 @@
 from navigation.services import *
 
-def get_home_article_category_id():
+
+def get_home_article_category_id() -> int:
     """
     Отримати ідентифікатор категорії статей для домашньої сторінки
 
@@ -8,12 +9,14 @@ def get_home_article_category_id():
     """
     return 0
 
-def get_base_args():
+
+def get_base_args() -> dict:
     """Отримати базові аргументи для рендеру сторінки"""
-    args = {}
-    args['navigation'] = get_navigation()
-    args['college'] = {
-        'fullname': 'Відокремлений структурний підрозділ "Рівненський технічний фаховий коледж Національного університету водного господарства та природокористування"', 
-        'short_name': 'ВСП "Рівненський технічний фаховий коледж НУВГП"'
+    return {
+        'navigation': get_navigation(),
+        'college': {
+            'fullname': 'Відокремлений структурний підрозділ "Рівненський технічний фаховий коледж Національного '
+                        'університету водного господарства та природокористування"',
+            'short_name': 'ВСП "Рівненський технічний фаховий коледж НУВГП"'
+        }
     }
-    return args

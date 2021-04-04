@@ -13,6 +13,7 @@ class Image(models.Model):
 
     class Meta:
         verbose_name_plural = 'Світлини'
+        db_table = 'image'
 
 
 @receiver(models.signals.post_delete, sender=Image)
