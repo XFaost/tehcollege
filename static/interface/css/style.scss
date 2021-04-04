@@ -92,6 +92,9 @@ a {
                 opacity: 1;  
                 display: block;                
             }
+            &__is_open:checked ~ &__title {
+                background-color: $gray;                  
+            }
 
             &__title {
                 padding: 12px 15px;
