@@ -20,13 +20,15 @@
 
             <div class="top_bar">
 
-                <div class="top_bar__background_img">
-                    <h2 class="top_bar__background_img__name __def">{{college.fullname}}</h2>
-                    <h2 class="top_bar__background_img__name __small">{{college.short_name}}</h2>
-                </div>                
-
-                {% include "navigation/view.html" %}
+                <div class="top_bar__background_img"></div>  
+                <div class="top_bar__name">
+                    <h4 class="__def">{{college.fullname}}</h4>
+                    <h4 class="__small">{{college.short_name}}</h4>
+                </div>                  
+                           
             </div>
+
+            {% include "navigation/view.html" %}
             
             {% block content %}
             {% endblock %} 

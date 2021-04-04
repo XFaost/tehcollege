@@ -1,35 +1,37 @@
-<div class="top_bar__nav">
+<div class="nav">
 
     {% for item in navigation %}
-    <div class="top_bar__nav__item">
+    <div class="nav__item">
         
-        <input type="radio" name="nav" class="top_bar__nav__item__is_open" >
+        <input type="radio" name="nav" class="nav__item__is_open" >
         {% if not item.children %}
-        <a href="{{item.url}}" class="top_bar__nav__item__title">
+        <a href="{{item.url}}" class="nav__item__title">
             <span>
                 {{item.name}}
             </span>
         </a>
         {% else %}        
-        <button class="top_bar__nav__item__title">
-            {{item.name}}
+        <button class="nav__item__title">
+            <span>
+                {{item.name}}
+            </span>
         </button>
         {% endif %}
 
         {% if item.children %}                
-        <div class="top_bar__nav__item__menu">
-            <div class="top_bar__nav__item__menu__childs">
+        <div class="nav__item__menu">
+            <div class="nav__item__menu__childs">
                 
                 {% for head in item.children %}
-                <div class="top_bar__nav__item__menu__childs__child">
-                    <a href="{{head.url}}" class="top_bar__nav__item__menu__childs__child__head">
+                <div class="nav__item__menu__childs__child">
+                    <a href="{{head.url}}" class="nav__item__menu__childs__child__head">
                         <span>
                             {{head.name}}
                         </span>
                     </a>
 
                     {% for url in head.children %}
-                    <a href="{{url.url}}" class="top_bar__nav__item__menu__childs__child__url">
+                    <a href="{{url.url}}" class="nav__item__menu__childs__child__url">
                         <span>
                             {{url.name}}
                         </span>
