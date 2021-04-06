@@ -1,54 +1,79 @@
 <div class="category">
 
-    {% for article in category.articles.list %}
+    {% if category.articles %}
 
-    <a class="block" href="/articles?id={{article.id}}" target="_blank">
-        <div class="category__article">
-            <h2 class="category__article__title">
-                {{article.title}}
-            </h2>
-            <div class="category__article__about">
-                <span class="category__article__about__item">
-                    Дата: {{article.create_datetime|date:"d.m.Y"}}
-                </span>
-                <span class="category__article__about__item">
-                    Автор: {{article.update_author}}
-                </span>
-            </div>
+        {% for article in category.articles.items %}
 
-            <div class="category__article__preview __def">
-                {% if article.preview_photo %}
-                <div class="category__article__preview__img">
-                    <img src="{{article.preview_photo}}"/>
-                </div>   
-                {% endif %}  
-                {% if article.preview_text %}       
-                <div class="category__article__preview__text">
-                    <span>
-                        {{article.preview_text}}
+        <a class="link_block" href="/articles?id={{article.id}}" target="_blank">
+            <div class="category__article">
+                <h2 class="category__article__title">
+                    {{article.title}}
+                </h2>
+                <div class="category__article__about">
+                    <span class="category__article__about__item">
+                        Дата: {{article.create_datetime|date:"d.m.Y"}}
                     </span>
-                </div> 
-                {% endif %}             
-            </div>    
-            
-            <div class="category__article__preview __small">
-                {% if article.preview_photo %}
+                    <span class="category__article__about__item">
+                        Автор: {{article.update_author}}
+                    </span>
+                </div>
 
-                <img class="category__article__preview__img" src="{{article.preview_photo}}"/>
-  
-                {% endif %}  
-                {% if article.preview_text %}       
-                <span class="category__article__preview__text">
-                    {{article.preview_text}}
-                </span> 
-                {% endif %}             
-            </div>  
+                <div class="category__article__preview __def">
+                    {% if article.preview_photo %}
+                    <div class="category__article__preview__img">
+                        <img src="{{article.preview_photo}}"/>
+                    </div>   
+                    {% endif %}  
+                    {% if article.preview_text %}       
+                    <div class="category__article__preview__text">
+                        <span>
+                            {{article.preview_text}}
+                        </span>
+                    </div> 
+                    {% endif %}             
+                </div>    
+                
+                <div class="category__article__preview __small">
+                    {% if article.preview_photo %}
 
-        </div>
-    </a>
-        
-    {% endfor %}
+                    <img class="category__article__preview__img" src="{{article.preview_photo}}"/>
     
-    {{category.articles.page_num}} / {{category.articles.last_page}}
+                    {% endif %}  
+                    {% if article.preview_text %}       
+                    <span class="category__article__preview__text">
+                        {{article.preview_text}}
+                    </span> 
+                    {% endif %}             
+                </div>  
+
+            </div>
+        </a>
+            
+        {% endfor %}
+
+        
+        <div class="pages">
+            <a class="link_block" href="{{category.articles.first_page_url}}">
+                <span class="pages __item">
+                    Початок
+                </span> 
+            </a> 
+            {% for page in category.articles.list_pages %}
+            <a class="link_block" href="{{page.url}}">
+                <span class="pages __item {% if page.num == category.articles.num_page %}__current{% endif %}">
+                    {{page.num}}
+                </span> 
+            </a>          
+            {% endfor %}
+            <a class="link_block" href="{{category.articles.last_page_url}}">
+                <span class="pages __item">
+                    Кінець
+                </span> 
+            </a> 
+        </div>
+
+    {% else %}
+        <h2 class="category__empty">Статті відсутні</h2>
+    {% endif %}
     
 </div>

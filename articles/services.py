@@ -1,39 +1,42 @@
-from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 
 from articles.models import *
+from home.services.services import *
 
 
-def __get_paginator(items: list, page_num: int, max_quantity: int) -> dict:
-    """Отримати paginator вказавши QuerySet items, номер сторінки page_num та max кількість елементів max_quantity на одній сторінці"""
+def __get_category_name(category_id):
+    """
+    Отримати назву категорії
 
-    paginator = Paginator(items, max_quantity)
+    Parameters:
+        category_id: int
 
-    if page_num > paginator.num_pages:
-        page_num = paginator.num_pages
-
-    return {
-        'page_num': page_num,
-        'list': paginator.page(page_num),
-        'last_page': paginator.num_pages
-    }
-
-
-def __get_category_name(category_id: int) -> str:
-    """Отримати ім'я категорії по ідентифікатору category_id"""
+    Return:
+        str
+    """
     category = Category.objects.filter(id=category_id).first()
     if category:
         return category.name
     return "Не відома категорія"
 
 
-def __get_articles_by_category(category_id: int, page_num: int) -> dict:
+def __get_category_articles(request_args, category_id, num_page):
     """
-    Отримати статі, які належать категорії з id=category_id на сторінці page_num
+    Отримати:
+        * Отримати статі даної категорії враховуючи вказану сторінку
+        * Дані для рендеру панелі зі сторінками
 
-    category_id - 0, то виведуться усі статті
+    Parameters:
+        request_args: dict
+        category_id: int
+        num_page: int
+
+    Note:
+        Якщо category_id == 0, то виведуться усі статті
+
+    Return:
+        dict
     """
-
     articles = Article.objects.all().order_by('-id')
 
     if category_id > 0:
@@ -42,26 +45,56 @@ def __get_articles_by_category(category_id: int, page_num: int) -> dict:
             articles = articles.filter(tags__in=category.tags.all()).distinct()
 
     if articles:
-        return __get_paginator(articles, page_num, 2)
-    return {}
+        return get_paginator(request_args, articles, num_page, 2)
+    return None
 
 
-def __create_category_args(name: str, articles: list) -> dict:
-    """Отримати заповнений шаблон для рендеру списку статей вказавши """
+def __create_category_args(name, articles):
+    """
+    Отримати заповнений шаблон для рендеру списку статей
+
+    Parameters:
+        name: dict - назва категорії
+        articles: int - статті
+
+    Return:
+        dict
+    """
     return {'name': name, 'articles': articles}
 
 
-def get_category(category_id: int, category_page: int) -> dict:
-    """Отримати назву категорії та її статті"""
+def get_category_content(request, category_id, num_page):
+    """
+    Отримати назву категорії та її статті
+
+    Parameters:
+        request: HttpRequest
+        category_id: int
+        num_page: int
+
+    Note:
+        Якщо category_id == 0, то виведуться усі статті
+
+    Return:
+        dict
+    """
     name = __get_category_name(category_id)
-    articles = __get_articles_by_category(category_id, category_page)
+    request_args = get_request_args(request)
+    articles = __get_category_articles(request_args, category_id, num_page)
     return __create_category_args(name, articles)
 
 
-def get_article_or_404(article_id: int) -> Article:
+def get_article_or_404(article_id):
     """
-    Отримати статтю з id=article_id
+    Отримати статтю
 
-    При відсутності отримаємо 404    
+    Parameters:
+        article_id: int
+
+    Note:
+        При відсутності отримаємо 404
+
+    Return:
+        Article
     """
     return get_object_or_404(Article, pk=article_id)

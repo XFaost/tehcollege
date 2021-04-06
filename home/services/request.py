@@ -1,25 +1,88 @@
-from typing import Optional, Union
+def get_request_args(request):
+    """
+    Отримати аргументи з request
 
+    Parameters:
+        request: HttpRequest
 
-def __get_var_from_request(request, name_var: str) -> Optional[str]:
-    """Отримати зміст аргументу з назвою name_var. Функція самостійно визначає request.method"""
+    Return:
+        dict
+    """
+    queryDict = None
     if request.method == 'POST':
-        return request.POST.get(name_var)
+        queryDict = request.POST
     elif request.method == 'GET':
-        return request.GET.get(name_var)
-    else:
-        return None
+        queryDict = request.GET
+    return queryDict.dict()
 
 
-def __var_have_value(var: Union[str, list]) -> bool:
-    if var is not None and len(var) > 0:
-        return var
-    return None
+def generate_url_args(request_args):
+    """
+    Згенерувати аргументи для посилання
+
+    Parameters:
+        request_args: dict
+        
+    Return:
+        str
+    """
+    parameters_for_url = '?'
+    for i in request_args:
+        parameters_for_url += i + '=' + str(request_args[i]) + '&'
+    return parameters_for_url[:-1]
 
 
-def get_int_from_request(request, name_var: str, default_value: int) -> int:
-    """Отримати зміст аргументу з назвою name_var у вигляді int. Якщо виникла помилка - поверне default_value"""
-    var = __get_var_from_request(request, name_var)
+def generate_url_args_with_changes(request_args, changed_args):
+    """
+    Згенерувати аргументи для посилання
+
+    Parameters:
+        request_args: dict
+        changed_args: dict - аргументи, які потрібно змінити
+
+    Return:
+        str
+    """
+    for arg in changed_args:
+        request_args[arg] = changed_args[arg]
+    return generate_url_args(request_args)
+
+
+def __get_request_arg(request, arg_name):
+    """
+    Отримати значення аргументу з request
+
+    Parameters:
+        request: HttpRequest
+        arg_name: str
+
+    Return:
+        str
+    """
+    args = get_request_args(request)
+    return args.get(arg_name, None)
+
+
+def __var_is_have_value(var):
+    return var is not None and len(var) > 0
+
+
+def get_request_int_arg(request, arg_name, default_value):
+    """
+    Отримати значення аргументу з request у вигляді int
+
+    Parameters:
+        request: HttpRequest
+        arg_name: str
+        default_value: int
+
+    Note:
+         Якщо виникне помилка - повернеться default_value
+
+    Return:
+        int
+    """
+    var = __get_request_arg(request, arg_name)
     try:
         return int(var)
     except ValueError:
@@ -29,17 +92,35 @@ def get_int_from_request(request, name_var: str, default_value: int) -> int:
     return default_value
 
 
-def get_str_from_request(request, name_var: str) -> Optional[str]:
-    """Отримати зміст аргументу з назвою name_var у вигляді str. Якщо виникла помилка - поверне None"""
-    var = __get_var_from_request(request, name_var)
-    if __var_have_value(var):
+def get_request_str_arg(request, arg_name):
+    """
+    Отримати значення аргументу з request у вигляді str
+
+    Parameters:
+        request: HttpRequest
+        arg_name: str
+
+    Return:
+        str
+    """
+    var = __get_request_arg(request, arg_name)
+    if __var_is_have_value(var):
         return var
     return None
 
 
-def get_list_from_request(request, name_var: str) -> Optional[list]:
-    """Отримати зміст аргументу з назвою name_var[] у вигляді list. Якщо виникла помилка - поверне None"""
-    var = __get_var_from_request(request, name_var + '[]')
-    if __var_have_value(var):
+def get_request_list_arg(request, arg_name):
+    """
+    Отримати значення аргументу з request у вигляді list
+
+    Parameters:
+        request: HttpRequest
+        arg_name: str
+
+    Return:
+        list
+    """
+    var = __get_request_arg(request, arg_name+'[]')
+    if __var_is_have_value(var):
         return var
     return None

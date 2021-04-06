@@ -4,27 +4,12 @@
 $top_bar_logo: '/media/images/logo.png';
 $border-radius: 10px;
 
-// $background_site_color: #f5f6fa;
-// $background_elements_color: white;
-// $third_color: #B6906C;
-
-// $background_site_color: #E3DFDC;
-// $background_elements_color: #F5F5F7;
-// $third_color: #B6906C;
-
-$background_site_color: #f5f6fa;
-$background_elements_color: #ffffff;
-//$third_color: #85a5c7;
-$third_color: #f5f6fa;
-
 h1, h2, h3, h4, h5, h6 {
-    //font-family: e-UkraineHead-Bold, Helvetica, Arial, sans-serif;
     font-family: Roboto, sans-serif;
 }
 
 span, p, button {
     display: block;
-    //font-family: e-Ukraine-Light, Helvetica, Arial, sans-serif;
     font-family: Roboto, sans-serif;
     font-size: 14px;   
     line-height: 18px; 
@@ -65,7 +50,6 @@ a {
     margin: 25px 0 5px 0;   
     
     border-radius: $border-radius;
-    //background-color: $background_elements_color;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -202,7 +186,7 @@ a {
                             height: 20px;
                             width: 20px;
                             border-radius: $border-radius;
-                            background-color: #dbecfc;
+                            background-color: $blue;
                             display: block;  
                             opacity: 0;   
                             transition:  opacity .5s ease-out;                       
@@ -276,7 +260,7 @@ a {
             margin: 0 5px 5px 0;
             padding: 4px 10px;
             border-radius: $border-radius;
-            background-color: #dbecfc;
+            background-color: $blue;
             box-shadow: $shadow-sm;
             letter-spacing: 1px;
             font-size: 12px;
@@ -309,7 +293,7 @@ a {
                 margin: 0 5px 5px 0;
                 padding: 4px 10px;
                 border-radius: $border-radius;
-                background-color: #dbecfc;
+                background-color: $blue;
                 box-shadow: $shadow-sm;
                 letter-spacing: 1px;
                 font-size: 12px;
@@ -338,8 +322,7 @@ a {
                     span {
                         border-radius: $border-radius;
                         padding: 15px;
-                        background-color: $third_color;
-                        //color: $white;
+                        background-color: $gray;
                         color: $black;
                         letter-spacing: 1px;
                         box-shadow: $shadow-sm;
@@ -371,7 +354,38 @@ a {
             
         }
 
-    }   
+    } 
+    
+    &__empty {
+        text-align: center;
+    }
+}
+
+.pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+
+    &.__item {
+        padding: 10px;
+        border-radius: $border-radius;
+        background-color: $background_elements_color;
+        color: $black;
+        margin: 2px;
+        &.__current {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+
+    &.__start {
+
+    }
+    &.__end {
+
+    }
 }
 
 
