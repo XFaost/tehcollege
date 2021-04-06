@@ -5,7 +5,7 @@ from articles.models import *
 
 
 def __get_paginator(items: list, page_num: int, max_quantity: int) -> dict:
-    """Отримати paginator вказавши querylist, номер сторінки та max кількість елементів на одній сторінці"""
+    """Отримати paginator вказавши QuerySet items, номер сторінки page_num та max кількість елементів max_quantity на одній сторінці"""
 
     paginator = Paginator(items, max_quantity)
 
@@ -20,8 +20,8 @@ def __get_paginator(items: list, page_num: int, max_quantity: int) -> dict:
 
 
 def __get_category_name(category_id: int) -> str:
-    """Отримати ім'я категорії по даному ідентифікатору"""
-    category = ArticleCategory.objects.filter(id=category_id).first()
+    """Отримати ім'я категорії по ідентифікатору category_id"""
+    category = Category.objects.filter(id=category_id).first()
     if category:
         return category.name
     return "Не відома категорія"
@@ -29,7 +29,7 @@ def __get_category_name(category_id: int) -> str:
 
 def __get_articles_by_category(category_id: int, page_num: int) -> dict:
     """
-    Отримати статі по даній категорії та сторінці
+    Отримати статі, які належать категорії з id=category_id на сторінці page_num
 
     category_id - 0, то виведуться усі статті
     """
@@ -37,7 +37,7 @@ def __get_articles_by_category(category_id: int, page_num: int) -> dict:
     articles = Article.objects.all().order_by('-id')
 
     if category_id > 0:
-        category = ArticleCategory.objects.filter(id=category_id).first()
+        category = Category.objects.filter(id=category_id).first()
         if category:
             articles = articles.filter(tags__in=category.tags.all()).distinct()
 
@@ -46,31 +46,22 @@ def __get_articles_by_category(category_id: int, page_num: int) -> dict:
     return {}
 
 
-def __create_article_category_args(name: str, articles: list) -> dict:
-    """Отримати заповнений шаблон для рендеру списку статей"""
+def __create_category_args(name: str, articles: list) -> dict:
+    """Отримати заповнений шаблон для рендеру списку статей вказавши """
     return {'name': name, 'articles': articles}
 
 
-def get_article_category(article_category_id: int, article_category_page: int) -> dict:
+def get_category(category_id: int, category_page: int) -> dict:
     """Отримати назву категорії та її статті"""
-    name = __get_category_name(article_category_id)
-    articles = __get_articles_by_category(article_category_id, article_category_page)
-    return __create_article_category_args(name, articles)
+    name = __get_category_name(category_id)
+    articles = __get_articles_by_category(category_id, category_page)
+    return __create_category_args(name, articles)
 
 
 def get_article_or_404(article_id: int) -> Article:
     """
-    Отримати статтю по даному id
+    Отримати статтю з id=article_id
 
     При відсутності отримаємо 404    
     """
     return get_object_or_404(Article, pk=article_id)
-
-
-def get_simple_page_or_404(simple_page_id: int) -> SimplePage:
-    """
-    Отримати просту сторінку по даному id
-
-    При відсутності отримаємо 404    
-    """
-    return get_object_or_404(SimplePage, pk=simple_page_id)

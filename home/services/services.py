@@ -1,7 +1,7 @@
 from navigation.services import *
 
 
-def get_home_article_category_id() -> int:
+def get_home_category_id() -> int:
     """
     Отримати ідентифікатор категорії статей для домашньої сторінки
 
@@ -20,3 +20,4 @@ def get_base_args() -> dict:
             'short_name': 'ВСП "Рівненський технічний фаховий коледж НУВГП"'
         }
     }
+

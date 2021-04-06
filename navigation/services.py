@@ -22,7 +22,7 @@ def __item_navigation_to_json_item(item: str) -> str:
 
 
 def __get_children_of_item_navigation(items: list) -> str:
-    """Отримати потомків даного елемента навігації з БД у форматі json"""
+    """Отримати потомків даних елементів навігації з БД у форматі json"""
 
     item_json = ''
 

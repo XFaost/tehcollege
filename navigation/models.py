@@ -7,8 +7,8 @@ NAVIGATION_JSON_PATH = 'navigation/saved_navigation.json'
 
 class Navigation(MPTTModel):
     # https://stackoverflow.com/questions/60120266/django-categories-and-subcategories
-    name = models.CharField(max_length=256, verbose_name="Ім'я")
-    url = models.URLField(max_length=4096, verbose_name="Посилання")
+    name = models.CharField(max_length=256, verbose_name='Ім\'я')
+    url = models.URLField(max_length=4096, verbose_name='Посилання')
     parent = TreeForeignKey(
         'self',
         blank=True,
@@ -22,5 +22,5 @@ class Navigation(MPTTModel):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Елементи навігації"
+        verbose_name_plural = 'Елементи навігації'
         db_table = 'navigation'

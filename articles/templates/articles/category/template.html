@@ -1,6 +1,6 @@
 <div class="category">
 
-    {% for article in article_category.articles.list %}
+    {% for article in category.articles.list %}
 
     <a class="block" href="/articles?id={{article.id}}" target="_blank">
         <div class="category__article">
@@ -49,6 +49,6 @@
         
     {% endfor %}
     
-    {{article_category.articles.page_num}} / {{article_category.articles.last_page}}
+    {{category.articles.page_num}} / {{category.articles.last_page}}
     
 </div>

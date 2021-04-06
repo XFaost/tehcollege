@@ -4,7 +4,7 @@ import os
 
 
 class Image(models.Model):
-    image = models.ImageField(upload_to="images", verbose_name='Світлина')
+    image = models.ImageField(upload_to='images', verbose_name='Світлина')
     description = models.TextField(blank=True, null=True, verbose_name='Опис')
     create_datetime = models.DateTimeField(auto_now_add=True, verbose_name='Створено')
 
