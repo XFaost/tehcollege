@@ -36,7 +36,7 @@ def get_base_args():
 
 def generate_pages_list(request_args, num_page, last_page):
     """
-    Отримати список сторінок
+    Згенерувати список сторінок
 
     Parameters:
         request_args: dict
@@ -76,23 +76,23 @@ def generate_pages_list(request_args, num_page, last_page):
     return pages_list
 
 
-def get_paginator(request_args, items, num_page, max_quantity):
+def get_paginator(request_args, items, num_page, max_quantity_in_page):
     """
     Отримати:
-        * QuerySet список враховуючи сторінку
-        * Дані для рендеру панелі зі сторінками
+     * QuerySet список враховуючи сторінку
+     * дані для рендеру навігації між сторінками
 
     Parameters:
         request_args: dict
         items: QuerySet
         num_page: int
-        max_quantity: int
+        max_quantity_in_page: int
 
     Return:
         dict
     """
 
-    paginator = Paginator(items, max_quantity)
+    paginator = Paginator(items, max_quantity_in_page)
 
     if num_page > paginator.num_pages:
         num_page = paginator.num_pages

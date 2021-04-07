@@ -1,8 +1,8 @@
 <div class="category">
 
-    {% if category.articles %}
+    {% if category.articles_content %}
 
-        {% for article in category.articles.items %}
+        {% for article in category.articles_content.items %}
 
         <a class="link_block" href="/articles?id={{article.id}}" target="_blank">
             <div class="category__article">
@@ -53,19 +53,19 @@
 
         
         <div class="pages">
-            <a class="link_block" href="{{category.articles.first_page_url}}">
+            <a class="link_block" href="{{category.articles_content.first_page_url}}">
                 <span class="pages __item">
                     Початок
                 </span> 
             </a> 
-            {% for page in category.articles.list_pages %}
+            {% for page in category.articles_content.list_pages %}
             <a class="link_block" href="{{page.url}}">
-                <span class="pages __item {% if page.num == category.articles.num_page %}__current{% endif %}">
+                <span class="pages __item {% if page.num == category.articles_content.num_page %}__current{% endif %}">
                     {{page.num}}
                 </span> 
             </a>          
             {% endfor %}
-            <a class="link_block" href="{{category.articles.last_page_url}}">
+            <a class="link_block" href="{{category.articles_content.last_page_url}}">
                 <span class="pages __item">
                     Кінець
                 </span> 

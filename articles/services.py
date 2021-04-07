@@ -17,14 +17,14 @@ def __get_category_name(category_id):
     category = Category.objects.filter(id=category_id).first()
     if category:
         return category.name
-    return "Не відома категорія"
+    return "Невідома категорія"
 
 
 def __get_category_articles(request_args, category_id, num_page):
     """
     Отримати:
-        * Отримати статі даної категорії враховуючи вказану сторінку
-        * Дані для рендеру панелі зі сторінками
+     * статті категорії із врахуванням сторінки
+     * дані для рендеру навігації між сторінками
 
     Parameters:
         request_args: dict
@@ -45,27 +45,29 @@ def __get_category_articles(request_args, category_id, num_page):
             articles = articles.filter(tags__in=category.tags.all()).distinct()
 
     if articles:
-        return get_paginator(request_args, articles, num_page, 2)
+        return get_paginator(request_args, articles, num_page, 10)
     return None
 
 
-def __create_category_args(name, articles):
+def __generate_category_content_by_template(category_name, articles_content):
     """
-    Отримати заповнений шаблон для рендеру списку статей
+    Згенерувати заповнений шаблон для рендеру списку статей
 
     Parameters:
-        name: dict - назва категорії
-        articles: int - статті
+        category_name: dict
+        articles_content: int
 
     Return:
         dict
     """
-    return {'name': name, 'articles': articles}
+    return {'name': category_name, 'articles_content': articles_content}
 
 
 def get_category_content(request, category_id, num_page):
     """
-    Отримати назву категорії та її статті
+    Отримати:
+     * назву категорії
+     * статті категорії із врахуванням сторінки та дані для рендеру навігації між сторінками
 
     Parameters:
         request: HttpRequest
@@ -81,7 +83,7 @@ def get_category_content(request, category_id, num_page):
     name = __get_category_name(category_id)
     request_args = get_request_args(request)
     articles = __get_category_articles(request_args, category_id, num_page)
-    return __create_category_args(name, articles)
+    return __generate_category_content_by_template(name, articles)
 
 
 def get_article_or_404(article_id):
