@@ -1,10 +1,9 @@
 {
     "version": 3,
-    "mappings": "AEAA,UAAU;EACT,WAAW,EAAE,oBAAoB;EACjC,GAAG,EAAE,4CAA4C;;;AAGlD,UAAU;EACT,WAAW,EAAE,iBAAiB;EAC9B,GAAG,EAAE,wCAAwC",
+    "mappings": "",
     "sources": [
         "templates.scss",
-        "colors.scss",
-        "fonts.scss"
+        "colors.scss"
     ],
     "names": [],
     "file": "templates.css"
