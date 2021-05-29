@@ -2,24 +2,43 @@
 {% block title %}{{article.title}}{% endblock %}
 {% load static %}
 
+{% block css_files %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+{% endblock %}
+
+{% block js_files %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+{% endblock %}
+
 {% block content %}
-<div class="article">
-    <h2 class="article__title">
-        {{article.title}}
-    </h2>
-    <div class="article__about">
-        <span class="article__about__item">
-            Дата: {{article.create_datetime|date:"d.m.Y"}}
-        </span>
-        <span class="article__about__item">
-            Автор: {{article.update_author}}
-        </span>
-    </div>
 
-    <hr/>
+    <div class="article">
+        <h2 class="article__title">
+            {{article.obj.title}}
+        </h2>
+        <div class="article__about">
+            <span class="article__about__item">
+                Дата: {{article.obj.create_datetime|date:"d.m.Y"}}
+            </span>
+            <span class="article__about__item">
+                Автор: {{article.obj.update_author}}
+            </span>
+        </div>
 
-    <div class="article__content">
-        {{article.content|safe}}
+        <hr/>
+
+        <div class="article__content">
+            {{article.obj.content|safe}}
+        </div>
+
+        {% if article.slider %}
+            <div class="slider">
+                <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs">
+                    {% for article_slide in article.slider %}
+                        <img src="{{article_slide.slide.image.url}}">
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
-</div>
 {% endblock %}

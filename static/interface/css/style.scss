@@ -395,6 +395,22 @@ a {
     opacity: 0;
 }
 
+.slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 50px;
+
+    .fotorama {
+        &__stage {
+            border-radius: $border-radius;
+        }                
+    }
+}
+
+
 @media screen and (max-width: 1199px) { 
     .top_bar {    
         &__name {

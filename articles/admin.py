@@ -1,12 +1,20 @@
 from django.contrib import admin
-from articles.models import *
-from django.utils.html import format_html
-
 import datetime
+
+from articles.models import *
 
 
 class tag_admin(admin.ModelAdmin):
     search_fields = ['name', 'description', ]
+
+
+class article_slider_admin(admin.StackedInline):  # TabularInline StackedInline
+    model = ArticleSlider
+    extra = 3
+
+    fields = ('slide', 'image_tag',)
+    readonly_fields = ('image_tag',)
+    autocomplete_fields = ['slide', ]
 
 
 class article_admin(admin.ModelAdmin):
@@ -15,6 +23,8 @@ class article_admin(admin.ModelAdmin):
     readonly_fields = ('create_author', 'update_author', 'create_datetime', 'update_datetime', 'my_url_link',)
     list_filter = ('tags', 'create_author',)
     exclude = ('url',)
+    inlines = [article_slider_admin, ]
+    save_on_top = True
 
     def save_model(self, request, obj, form, change):
         """Після створення статті їй присвоюється автор та час. Якщо оновили статю, присвоюється коли та яка особа

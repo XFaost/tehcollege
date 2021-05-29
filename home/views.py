@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-from home.services.request import *
-from home.services.services import *
 from articles.services import *
 
 

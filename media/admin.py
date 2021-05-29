@@ -4,7 +4,7 @@ from django.utils.html import format_html
 
 
 class image_admin(admin.ModelAdmin):
-    search_fields = ['image__name', 'description', ]
+    search_fields = ['image', ]
     list_display = ('image_view', 'create_datetime',)
 
     def image_view(self, obj):

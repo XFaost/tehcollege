@@ -4,6 +4,16 @@ from articles.models import *
 from home.services.services import *
 
 
+def __get_all_category_articles():
+    """
+    Отримати усі видимі статті
+
+    Return:
+        QuerySet[Article]
+    """
+    return Article.objects.filter(is_hide=False).order_by('-id')
+
+
 def __get_category_name(category_id):
     """
     Отримати назву категорії
@@ -37,7 +47,7 @@ def __get_category_articles(request_args, category_id, num_page):
     Return:
         dict
     """
-    articles = Article.objects.all().order_by('-id')
+    articles = __get_all_category_articles()
 
     if category_id > 0:
         category = Category.objects.filter(id=category_id).first()
@@ -47,6 +57,10 @@ def __get_category_articles(request_args, category_id, num_page):
     if articles:
         return get_paginator(request_args, articles, num_page, 10)
     return None
+
+
+def __get_article_slider(article_id):
+    return ArticleSlider.objects.filter(article__id=article_id)
 
 
 def __generate_category_content_by_template(category_name, articles_content):
@@ -61,6 +75,29 @@ def __generate_category_content_by_template(category_name, articles_content):
         dict
     """
     return {'name': category_name, 'articles_content': articles_content}
+
+
+def __generate_article_content_by_template(article_id):
+    """
+    Згенерувати заповнений шаблон для рендеру статі
+
+    Parameters:
+        article_id: dict
+
+    Note:
+        При відсутності статі отримаємо 404
+
+    Return:
+        dict
+    """
+
+    article = get_object_or_404(Article, pk=article_id)
+    slider = __get_article_slider(article_id)
+
+    return {
+        'obj': article,
+        'slider': slider
+    }
 
 
 def get_category_content(request, category_id, num_page):
@@ -99,4 +136,4 @@ def get_article_or_404(article_id):
     Return:
         Article
     """
-    return get_object_or_404(Article, pk=article_id)
+    return __generate_article_content_by_template(article_id)
