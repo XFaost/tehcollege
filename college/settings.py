@@ -18,12 +18,29 @@ CKEDITOR_UPLOAD_PATH = 'articles/'
 SECRET_KEY = '3!4y*@vatjd9a(go9le%ze=tm2pjfzn+yigh5x$aq%yi)t+8#s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-LOCAL_MACHINE = False
+DEBUG = True
+LOCAL_MACHINE = True
 
 if LOCAL_MACHINE:
     ALLOWED_HOSTS = ['127.0.0.1', ]
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'tech_college',
+            'USER': 'dev',
+            'PASSWORD': 'DN67^6t@guYR9^*x%673Mu6Zjjz#@#YF',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
     if not DEBUG:
         STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
     ALLOWED_HOSTS = ['techcollege.object41.com', ]
@@ -81,22 +98,7 @@ WSGI_APPLICATION = 'college.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tech_college',
-        'USER': 'dev',
-        'PASSWORD': 'DN67^6t@guYR9^*x%673Mu6Zjjz#@#YF',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Password validation
