@@ -1,13 +1,3 @@
-@font-face {
-  font-family: 'e-UkraineHead-Bold';
-  src: url("/static/fonts/e-UkraineHead-Light.ttf");
-}
-
-@font-face {
-  font-family: 'e-Ukraine-Light';
-  src: url("/static/fonts/e-Ukraine-Light.ttf");
-}
-
 h1, h2, h3, h4, h5, h6 {
   font-family: Roboto, sans-serif;
 }
