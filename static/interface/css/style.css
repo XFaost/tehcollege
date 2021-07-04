@@ -78,7 +78,7 @@ a a.link_block:hover, a a.link_block:visited, a a.link_block:link, a a.link_bloc
 .top_bar__background_img {
   height: 100px;
   width: 100px;
-  background-image: url("/media/images/logo.png");
+  background-image: url("/media/images/logo.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
